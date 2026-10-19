@@ -1,0 +1,65 @@
+{
+  "scope": "Paid compatibility test 01 only, not approval for production",
+  "requiredSuites": {
+    "test/positive/GovernancePositive.t.sol": {
+      "sha256": "a44cc17fd5594815118445f179dde1e86825cbc7ff3d6b734237ab908147eec1",
+      "requiredCases": [
+        "testNormalDelayedResolutionDoesNotExtendRepairClock()",
+        "testNormalFixedStakeHasNoSnapshotOrSeatCap()",
+        "testNormalJoinAuthorizationAndSeparateStake()",
+        "testNormalKeyRotationCarriesStakeAndPreservesPastEarnings()",
+        "testNormalMissedRepairReturnsBudget()",
+        "testNormalOneRepairFreshVoteThenPayment()",
+        "testNormalOperatingConversionNameAndLaterUpdate()",
+        "testNormalSecondUnapprovedDeliveryReturnsBudget()",
+        "testNormalSnapshotTimeoutAndRepairClock()",
+        "testNormalSuspendedMemberCanExitAndReceiveOriginalStake()",
+        "testNormalSuspensionPreservesOldBallotAndRecoversAfterFourWeeks()",
+        "testNormalTwoQualifiedPeriodsAndAllowanceClaim()",
+        "testNormalTwoWorkRoundsAndExit()",
+        "testNormalUnavailableServiceLeavesBudgetAndAllowsRetry()"
+      ]
+    },
+    "test/positive/ImdFactoryPositive.t.sol": {
+      "sha256": "8369814702828e0908ea3a59154ae273a7588ffad3ae6da12f5afad7493523ff",
+      "requiredCases": [
+        "testNormalAtomicFactorySeedRecordProofAndClaim()",
+        "testNormalBuySellAndFactoryFeeCollection()",
+        "testNormalLaunchTaxFundsQualifiedMembersAndAcceptedWork()",
+        "testNormalPlatformFeesReachTwoAssetTreasury()",
+        "testNormalTwoAssetAllowanceWorkRewardAndSale()"
+      ]
+    }
+  },
+  "immutableRules": [
+    "Fixed stake independent of later distribution snapshot",
+    "No core administrator override or upgrade",
+    "One staking address per seat without total seat cap",
+    "3 percent project tax in IMD in each direction, in addition to platform fees",
+    "Separate 50/50 accounting per supported asset",
+    "Original wallet allocation and paid reward quota remain independently authenticated",
+    "Principal refunds to original depositor and approved work payments to fixed recipient",
+    "Four complete suspension weeks preserve fixed old electorates, earned rights and exit.",
+    "One seven-day repair; second failure or expiry returns the work reserve.",
+    "Exact operating calls use isolated approved budgets; failed calls do not mark completion.",
+    "Electorates assemble within seven days; deadlines do not extend when callers are late."
+  ],
+  "requiredCommands": [
+    "python tools/build_external_fixtures.py",
+    "forge test --json"
+  ],
+  "deploymentRequirements": [
+    "Verified mainnet receipts and runtime of the fixed constitution and creation-code package before submission",
+    "Exact core creation bytes from the package must equal the compiled core, and constitution bytes must equal committed English text",
+    "Hook creates Core atomically using actual Token and Hook addresses; no mutable binding, administrator, proxy or delegatecall",
+    "Actual factory launch must fit current transaction gas/initcode/runtime limits",
+    "Read actual Hook.core() and verify all child bindings and official registry after deployment",
+    "Confirm requester fee recipient is Hook or perform payer-authorized future-fee handover before acceptance"
+  ],
+  "limitations": [
+    "These nineteen cases cover positive behavior and ordinary failure handling only, not a complete security audit.",
+    "Additional protocol/system requirements in RULE-MAP.md still need final release verification.",
+    "Current fixed stake and account/time/token data are local fixtures.",
+    "New adversarial or bypass testing remains outside the current authorization."
+  ]
+}

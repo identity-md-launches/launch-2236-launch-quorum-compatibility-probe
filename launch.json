@@ -1,0 +1,29 @@
+{
+  "kind": "univ4_hook",
+  "hook": {
+    "contract": "QuorumIssuanceHook",
+    "constructorArgs": [
+      "$poolManager",
+      "$token"
+    ],
+    "permissions": [
+      "beforeInitialize",
+      "beforeAddLiquidity",
+      "beforeSwap",
+      "afterSwap"
+    ]
+  },
+  "token": {
+    "contract": "QProbeToken",
+    "name": "Quorum Compatibility Probe",
+    "symbol": "QPROBE",
+    "decimals": 18
+  },
+  "pool": {
+    "pairedCurrency": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+    "fee": 12500,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "Ethereum mainnet compatibility test, not the QUORUM production launch. Pool opening price must be derived from the selected IMD policy and actual address ordering. The zero-argument token fixes the external immutable constitution and core-creation package. During Hook construction the package CREATEs Core with the actual token and Hook as constructor arguments. There are no setters, proxy or governance rule updates. Core source changes require a new package and are out of this test scope. 90% pool, 10% standard swarm; 3% IMD tax each direction in addition to platform fees. Platform future requester fees must belong to Hook, or the paying test wallet will explicitly hand them over before acceptance. Prerequisite runtime/hash checks in PREREQUISITES.json must be satisfied before publication/deployment. No website or ENS requested."
+}
