@@ -1,6 +1,7 @@
 out/
 cache/
-fixtures/
+/fixtures/external-build/lib/
+/fixtures/external-build/cache/
 evidence/
 __pycache__/
 *.pyc

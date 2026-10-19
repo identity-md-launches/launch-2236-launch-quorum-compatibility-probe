@@ -16,7 +16,7 @@ Determine whether IMD can import and review this project, validate its two prede
 
 ## Verify locally
 
-Run `python tools/build_external_fixtures.py`, then `forge test --json`. There are nineteen required positive tests. External PoolManager and IMD factory bytecode is built from vendored original sources with Solidity 0.8.26; project code uses Solidity 0.8.28. Both use their pinned optimizer configuration, viaIR, Cancun target and bytecode_hash=none.
+Run `forge test --json` directly. The five pinned external fixture artifacts are committed so an IMD verifier does not need a manual bootstrap. To reproduce these artifacts from the vendored original sources, optionally run `python tools/build_external_fixtures.py` first. There are nineteen required positive tests. External PoolManager and IMD factory bytecode is built from vendored original sources with Solidity 0.8.26; project code uses Solidity 0.8.28. Both use their pinned optimizer configuration, viaIR, Cancun target and bytecode_hash=none.
 
 The five issuance tests retain original proof registration, plain ERC20 transfers, 3% IMD buy/sell tax, 50/50 treasury accounting, paid work and wages, original allocation unlock, sell credits, and platform fee collection. Fourteen governance cases cover joining, key rotation, full-week qualification, voting snapshots, repair, suspension, exact operating calls, and principal refunds. Tests must not be removed, skipped or weakened. The constitution governs the intended rules; source/test disagreements must be reported.
 

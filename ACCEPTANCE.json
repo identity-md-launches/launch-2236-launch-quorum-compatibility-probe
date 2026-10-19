@@ -45,7 +45,6 @@
     "Electorates assemble within seven days; deadlines do not extend when callers are late."
   ],
   "requiredCommands": [
-    "python tools/build_external_fixtures.py",
     "forge test --json"
   ],
   "deploymentRequirements": [
@@ -61,5 +60,6 @@
     "Additional protocol/system requirements in RULE-MAP.md still need final release verification.",
     "Current fixed stake and account/time/token data are local fixtures.",
     "New adversarial or bypass testing remains outside the current authorization."
-  ]
+  ],
+  "optionalExternalArtifactRebuild": "python tools/build_external_fixtures.py"
 }
